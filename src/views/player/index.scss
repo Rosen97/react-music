@@ -1,0 +1,365 @@
+.player-wrap {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 300;
+	background-color: #999;
+
+	.fade-enter,
+	.fade-appear {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+
+	//enter-active指入场后到入场结束的过程，appear-active则是页面第一次加载自动执行
+	.fade-enter-active,
+	.fade-appear-active {
+		opacity: 1;
+		transform: translateY(0);
+		transition: all 1s ease-in;
+	}
+
+	//入场动画执行完毕后，保持状态
+	.fade-enter-done {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	//同理，出场前的一刹那，以下就不详细解释了，一样的道理
+	.fade-exit {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.fade-exit-active {
+		opacity: 0;
+		transform: translateY(-100%);
+		transition: all 1s ease-in;
+	}
+
+	.fade-exit-done {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+}
+
+.player-header {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 30px;
+	box-sizing: border-box;
+	z-index: 10;
+
+	span {
+		font-size: 34px;
+		color: #fff;
+
+		&.back {
+			margin-right: 40px;
+			flex-shrink: 0;
+		}
+	}
+
+	.title {
+		display: flex;
+		flex-direction: column;
+
+		span:last-child {
+			color: #999;
+		}
+	}
+}
+
+.player-bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	filter: contrast(5%);
+}
+
+.player-middle {
+	position: relative;
+	width: 100%;
+	height: 800px;
+
+	>div {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+
+		&.active {
+			opacity: 1;
+			z-index: 100;
+		}
+	}
+
+	li {
+		width: 100%;
+		text-align: center;
+		line-height: 60px;
+		font-size: 24px;
+		color: #333;
+
+		&.active {
+			color: #fff;
+		}
+	}
+}
+
+.play-cd {
+	position: relative;
+
+	.needle {
+		position: absolute;
+		display: block;
+		width: 200px;
+		height: 320px;
+		top: 0;
+		left: 360px;
+		z-index: 10;
+		background: url('./images/needle.png') no-repeat;
+		background-size: 100% 100%;
+		transition: all .3s ease;
+
+		&.is-pause {
+			top: -50px;
+			left: 420px;
+			transform: rotate(-30deg);
+		}
+	}
+
+	.cd-con {
+		position: absolute;
+		width: 524px;
+		height: 524px;
+		left: 50%;
+		top: 200px;
+		margin-left: -262px;
+		background: url('./images/disc.png') no-repeat;
+		background-size: 100% 100%;
+
+		&.is-play {
+			animation: rotate 20s linear infinite;
+		}
+
+		&.is-pause {
+			animation-play-state: paused;
+		}
+
+		img {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 356px;
+			height: 356px;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 1;
+		}
+	}
+}
+
+.progress-bar {
+	position: absolute;
+	left: 0;
+	top: 1000px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+
+	.time {
+		width: 50px;
+		margin: 0 30px;
+		text-align: center;
+		font-size: 24px;
+		color: #fff;
+	}
+
+	.line {
+		position: relative;
+		width: 100%;
+		height: 4px;
+		background-color: #fff;
+
+		.circle {
+			display: block;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 14px;
+			height: 14px;
+			background-color: red;
+			border-radius: 50%;
+			z-index: 10;
+		}
+	}
+}
+
+.control-config {
+	position: absolute;
+	left: 0;
+	top: 1130px;
+	width: 100%;
+	padding: 0 110px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+
+	.icon {
+		display: flex;
+
+		.iconfont {
+			color: #eee;
+			font-size: 60px;
+
+			&.iconpause,
+			&.iconbofang {
+				font-size: 80px;
+			}
+		}
+	}
+}
+
+.mini-player {
+	position: absolute;
+	left: 0;
+	bottom: -4px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	z-index: 200;
+	border-top: 1px solid #f7f7f7;
+	background-color: #fff;
+
+	.mini-left {
+		display: flex;
+		align-items: center;
+
+		.info {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		span {
+			font-size: 28px;
+			color: #333;
+
+			&.desc {
+				color: #666;
+			}
+		}
+
+		img {
+			width: 80px;
+			height: 80px;
+			margin-right: 20px;
+			border-radius: 50%;
+		}
+
+	}
+
+	.mini-right {
+		display: flex;
+		align-items: center;
+
+		.icon {
+			display: flex;
+
+			&:first-child {
+				margin-right: 30px;
+			}
+
+			.iconfont {
+				font-size: 50px;
+			}
+		}
+	}
+
+}
+
+.play-l-modal {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 400;
+	background: rgba($color: #000000, $alpha: 0.4);
+}
+
+.play-l-wrap {
+	position: absolute;
+	left: 50%;
+	bottom: 100px;
+	width: 90%;
+	padding: 30px;
+	transform: translateX(-50%);
+	border-radius: 50px;
+	background-color: #fff;
+	box-sizing: border-box;
+
+	.title {
+		font-weight: bold;
+		font-size: 32px;
+		color: #333;
+
+		span {
+			font-size: 28px;
+			color: #999;
+		}
+	}
+
+	.play-list {
+		width: 100%;
+		height: 700px;
+	}
+
+	.list-item {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		padding: 20px 0;
+
+		span {
+			font-size: 28px;
+			color: #333;
+
+			&.author {
+				font-size: 24px;
+				color: #999;
+			}
+
+			&.active {
+				color: red;
+			}
+		}
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}

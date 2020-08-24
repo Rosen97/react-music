@@ -1,0 +1,172 @@
+.ablum-wrap {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: #fff;
+
+    &.fly-enter,
+    &.fly-appear {
+        transform: rotateZ(30deg) translate3d(100%, 0, 0);
+    }
+
+    &.fly-enter-active,
+    &.fly-appear-active {
+        transition: transform .3s;
+        transform: rotateZ(0deg) translate3d(0, 0, 0);
+    }
+
+    &.fly-exit {
+        transform: rotateZ(0deg) translate3d(0, 0, 0);
+    }
+
+    &.fly-exit-active {
+        transition: transform .3s;
+        transform: rotateZ(30deg) translate3d(100%, 0, 0);
+    }
+}
+
+.ablum-head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    width: 100%;
+    height: 500px;
+    padding: 10px 40px 40px;
+    box-sizing: border-box;
+
+    .drag-head {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100% !important;
+        filter: blur(35px);
+        z-index: -1;
+    }
+}
+
+.ablum-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.ablum-info {
+    display: flex;
+    flex-direction: column;
+    height: 180px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+
+    .author {
+        display: flex;
+        margin-top: 60px;
+        font-size: 28px;
+        color: rgb(187, 168, 168);
+        font-weight: normal;
+
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+    }
+}
+
+.ablum-pic {
+    position: relative;
+    margin-right: 20px;
+
+    .count {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 24px;
+        color: #fff;
+    }
+
+    img {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+.play-con {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 90px;
+    padding-left: 30px;
+    box-sizing: border-box;
+
+    .play-left {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border-bottom: 1px solid rgb(228, 228, 228);
+        font-size: 34px;
+        color: #333;
+
+        span {
+            font-size: 24px;
+            color: rgb(187, 168, 168);
+        }
+    }
+
+    .save {
+        width: 260px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: #fff;
+        background-color: rgb(212, 68, 57);
+        border-radius: 10px;
+    }
+}
+
+.song-list{
+    padding-bottom: 140px;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+
+    .song-num {
+        width: 120px;
+        text-align: center;
+    }
+
+    .song-info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px 0;
+        border-bottom: 1px solid rgb(228, 228, 228);
+
+        span {
+            font-size: 28px;
+            color: #333;
+
+            &:last-child {
+                font-size: 24px;
+                color: rgb(187, 168, 168);
+            }
+        }
+    }
+}

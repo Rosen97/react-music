@@ -1,0 +1,3 @@
+export const CHANGE_COUNT = 'CHANGE_COUNT';
+export const RECOMMEND_LIST = 'RECOMMEND_LIST';
+export const BANNER_LIST = 'BANNER_LIST';
